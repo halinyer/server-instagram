@@ -1,9 +1,11 @@
+require('dotenv').config()
 const express = require('express')
 
 class Server {
   constructor(){
     this.app  = express()
-    this.port = 8082
+    this.port = process.env.PORT
+    
     this.paths = {
         home: '/',
         api:  '/api'
@@ -18,15 +20,17 @@ class Server {
 
 
   connectDB(){
-
+     //Connect DB
   }
 
   middleware(){
-      this.app.use(express.json())
+     //Aplication-level middleware
+     this.app.use(express.json())
   }
 
 
   routes(){
+     //Router-level middleware
      this.app.use(this.paths.home, require('../routes/home'))
      this.app.use(this.paths.api, require('../routes/api'))
 
