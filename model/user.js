@@ -21,10 +21,6 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref:'Post'
     }],
-    save:{
-      type: Schema.Types.ObjectId,
-      ref:''
-    },
     followers:{
        type:Number
     }, 
