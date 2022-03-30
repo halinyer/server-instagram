@@ -1,16 +1,13 @@
 const express = require('express')
 const router = express.Router()
 //Your controller of this route
-const { } = require('../controllers')
+const { createAccount } = require('../controllers/auth')
 
 
-router.get('/', )
+router.post('/', createAccount)
 
-router.post('/', )
+router.post('/', controllerLogin)
 
-router.put('/',)
-
-router.delete('/',)
 
 
 module.exports = router

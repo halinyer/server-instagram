@@ -17,10 +17,10 @@ const userSchema = new Schema({
       type:String
      
     },
-    post:{
+    post:[{
       type: Schema.Types.ObjectId,
-      ref:''
-    },
+      ref:'Post'
+    }],
     save:{
       type: Schema.Types.ObjectId,
       ref:''
