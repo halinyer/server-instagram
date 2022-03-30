@@ -21,9 +21,9 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref:'Post'
     }],
-    save:{
-      type: Schema.Types.ObjectId,
-      ref:''
+    private:{
+      type:Boolean,
+      default:false
     },
     followers:{
        type:Number
