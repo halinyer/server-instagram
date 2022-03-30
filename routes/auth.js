@@ -1,12 +1,16 @@
 const express = require('express')
 const router = express.Router()
 //Your controller of this route
-const { createAccount } = require('../controllers/auth')
+const { createAccount, login, updateAccount, getProfilePublic } = require('../controllers/auth')
 
+router.get('/', getProfilePublic)
 
-router.post('/', createAccount)
+router.post('/signup', createAccount)
 
-router.post('/', controllerLogin)
+router.post('/sigin', login)
+
+router.put('/:name', updateAccount)
+
 
 
 
