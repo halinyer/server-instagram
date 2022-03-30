@@ -6,7 +6,6 @@ const User = require('../model/user')
 const createAccount = async(req=request, res=response) => {
     const {name,password,...rest} = req.body
     
-    //Validar si no existe ese User
 
     //Encryptar password
     const salt = bcrypt.genSaltSync(10)
@@ -21,9 +20,10 @@ const createAccount = async(req=request, res=response) => {
 
     try {
         await newUser.save()
-    res.status(201).json({
-        msg:"New account create"
-    })
+
+        res.status(201).json({
+           msg:"New account create"
+        })
 
     } catch (error) {
         console.log(error)
