@@ -10,7 +10,6 @@ class Server {
     
     this.paths = {
         home: '/',
-        api:  '/api',
         auth:'/api/auth/'
     }
 
@@ -37,7 +36,6 @@ class Server {
   routes(){
      //Router-level middleware
      this.app.use(this.paths.home, require('../routes/home'))
-     this.app.use(this.paths.api, require('../routes/api'))
      this.app.use(this.paths.auth, require('../routes/auth'))
 
   }

@@ -1,9 +1,9 @@
 
 const initServer = require('./home')
-const initApi = require('./api')
+const routesProfile = require('./auth')
 
 
 module.exports = {
     ...initServer,
-    ...initApi
+    ...routesProfile
 }

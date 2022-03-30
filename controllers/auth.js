@@ -27,8 +27,9 @@ const updateAccount = (req, res) => {
 
 
 const getProfilePublic = (req, res) => {
+   const {name} = req.params
    res.json({
-       msg:"All profile public"
+       msg:`All profile ${name}`
    })
 }
 

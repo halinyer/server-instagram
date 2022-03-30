@@ -3,7 +3,7 @@ const router = express.Router()
 //Your controller of this route
 const { createAccount, login, updateAccount, getProfilePublic } = require('../controllers/auth')
 
-router.get('/', getProfilePublic)
+router.get('/:name', getProfilePublic)
 
 router.post('/signup', createAccount)
 
