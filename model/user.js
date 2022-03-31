@@ -21,6 +21,10 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref:'Post'
     }],
+    private:{
+      type:Boolean,
+      default:false
+    },
     followers:{
        type:Number
     }, 
