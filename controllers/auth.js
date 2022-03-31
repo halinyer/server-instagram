@@ -52,19 +52,11 @@ const updateAccount = (req, res) => {
  
 
 
-const getProfilePublic = async(req, res) => {
-   const {name} = req.params
-   const profile = await User.findOne({name})  
-   res.json({
-       profile
-   })
-}
 
 
 //Export your controllers
 module.exports = {
  createAccount ,
  login,
- updateAccount,
- getProfilePublic
+ updateAccount
 }
