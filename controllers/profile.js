@@ -12,7 +12,17 @@ const getProfilePublic = async(req, res) => {
     })
  }
     
+
+const updateProfile = async(req, res) => {
+   const userToUpdate = await User.findById(req.uid)
+
+   res.json({
+     msg:"User a modify",
+     userToUpdate
+   })
+} 
 //Export your controllers
 module.exports = {
-  getProfilePublic        
+  getProfilePublic,
+  updateProfile    
 }

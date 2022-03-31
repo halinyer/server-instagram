@@ -1,7 +1,7 @@
 const User = require('../model/user')
 //AUTH
 
-const isValidName = async( name ) => {
+const ExistsName = async( name ) => {
   const existName = await User.findOne({name})
   if ( existName ) {
       throw new Error("Name in use")
@@ -10,6 +10,19 @@ const isValidName = async( name ) => {
   return true
 }
 
+
+const NoExistsName = async( name ) => {
+  const existName = await User.findOne({name})
+  if ( !existName ) {
+      throw new Error("Error - name no existe")
+  }
+
+  return true
+}
+
+
+
 module.exports = {
-    isValidName
+    ExistsName,
+    NoExistsName
 }

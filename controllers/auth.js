@@ -1,5 +1,6 @@
-const bcrypt = require('bcryptjs')
 const {request,response} = require('express')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const User = require('../model/user')
 
 
@@ -37,8 +38,35 @@ const createAccount = async(req=request, res=response) => {
 
 
 
-const login = (req, res) => {
-    res.json("Seccion iniciada")
+const login = async(req, res) => {
+    const {name,password} = req.body
+     
+    const user = await User.findOne({name})
+    
+    //Comprobar si el user existe
+    if (!user) {
+        return res.json({
+            msg:'Error - name is invalid'
+        })
+    }
+
+    //Comprobar si las contrasenia es igual
+    const comparePassword = bcrypt.compareSync(password,user.password)
+    if (!comparePassword) {
+        return res.json({
+            msg:"Error - password incorrecto"
+        })
+    }
+    
+    const secretKey = process.env.JWT_KEY
+    const token = jwt.sign({uid:user._id},secretKey, {
+        expiresIn:1440
+    } )
+   
+    res.json({
+        msg:'Authenticacion correcta',
+        token
+    })
 }
 
 

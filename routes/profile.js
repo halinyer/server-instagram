@@ -1,11 +1,12 @@
 const express = require('express')
 const router = express.Router()
 //Your controller of this route
-const { getProfilePublic } = require('../controllers/profile')
+const { getProfilePublic, updateProfile } = require('../controllers/profile')
+const { validJWT } = require('../middleware/valid-jwt')
 
 
 router.get('/:name',getProfilePublic )
 
-
+router.put("/",validJWT,updateProfile)
 
 module.exports = router
