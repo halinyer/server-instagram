@@ -25,20 +25,25 @@ const userSchema = new Schema({
       type:Boolean,
       default:false
     },
-    followers:[{
+    follower:[{
       type: Schema.Types.ObjectId,
-      ref:'User'
-    }], 
+      ref:'Follow'
+    }],
     following:[{
       type: Schema.Types.ObjectId,
-      ref:'User'
+      ref:'Follow'
     }]
 })
 
 userSchema.methods.toJSON = function () {
-   let {password, private, ...rest} = this.toObject()
+   let {password, private,follower,following, ...rest} = this.toObject()
 
-   return rest
+   return {
+      ...rest,
+      follower:follower.length,
+      following:following.length
+
+   }
 }
 
 module.exports = model('User', userSchema)

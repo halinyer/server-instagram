@@ -1,12 +1,15 @@
 const express = require('express')
 const router = express.Router()
 //Your controller of this route
-const { getProfilePublic, updateProfile } = require('../controllers/profile')
+const { getProfilePublic, updateProfile, followUser } = require('../controllers/profile')
 const { validJWT } = require('../middleware/valid-jwt')
 
 
 router.get('/:name',getProfilePublic )
 
 router.put("/",validJWT,updateProfile)
+
+router.put("/follow/:userid",validJWT,followUser)
+
 
 module.exports = router
