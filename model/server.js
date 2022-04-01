@@ -9,6 +9,7 @@ class Server {
     this.port = process.env.PORT
     
     this.paths = {
+        post:    '/api/post',
         profile: '/api/profile/',
         auth:    '/api/auth/'
     }
@@ -35,6 +36,7 @@ class Server {
 
   routes(){
      //Router-level middleware
+     this.app.use(this.paths.post, require('../routes/post'))
      this.app.use(this.paths.auth, require('../routes/auth'))
      this.app.use(this.paths.profile, require('../routes/profile'))
 

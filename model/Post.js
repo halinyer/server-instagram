@@ -11,6 +11,9 @@ const postSchema = new Schema({
     },
     description:{
        type:String
+    },
+    like:{
+        type:Number
     }
 })
 
