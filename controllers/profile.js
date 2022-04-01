@@ -1,6 +1,6 @@
 const {request,response} = require('express')
 const User = require('../model/user')
-const Follow = require('../model/follow')
+
 
 
 const getProfilePublic = async(req, res) => {
@@ -8,6 +8,12 @@ const getProfilePublic = async(req, res) => {
 
     try {
       const profile = await User.findOne({name})
+      .populate({
+        path:'post',
+
+        select:'img like',
+        operDocumentLimit: 12
+      })
 
       
       res.json({
@@ -38,6 +44,5 @@ const updateProfile = async(req, res) => {
 //Export your controllers
 module.exports = {
   getProfilePublic,
-  updateProfile,
-  followUser
+  updateProfile
 }

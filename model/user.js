@@ -35,14 +35,15 @@ const userSchema = new Schema({
     }]
 })
 
+userSchema.methods.createPost = function (cb) {
+   
+}
+
 userSchema.methods.toJSON = function () {
    let {password, private,follower,following, ...rest} = this.toObject()
 
    return {
-      ...rest,
-      follower:follower.length,
-      following:following.length
-
+      ...rest
    }
 }
 
