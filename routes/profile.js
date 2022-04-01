@@ -9,7 +9,7 @@ router.get('/:name',getProfilePublic )
 
 router.put("/",validJWT,updateProfile)
 
-router.put("/follow/:userid",validJWT,followUser)
+
 
 
 module.exports = router
