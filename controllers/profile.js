@@ -14,7 +14,8 @@ const getProfilePublic = async(req, res) => {
     
 
 const updateProfile = async(req, res) => {
-   const userToUpdate = await User.findById(req.uid)
+   const {name,password,followers,following,...rest} = req.body
+   const userToUpdate = await User.findByIdAndUpdate(req.uid,rest)
 
    res.json({
      msg:"User a modify",

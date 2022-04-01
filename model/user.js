@@ -33,5 +33,10 @@ const userSchema = new Schema({
     }
 })
 
+userSchema.methods.toJSON = function () {
+   let {password, private, ...rest} = this.toObject()
+
+   return rest
+}
 
 module.exports = model('User', userSchema)
