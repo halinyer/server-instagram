@@ -25,12 +25,14 @@ const userSchema = new Schema({
       type:Boolean,
       default:false
     },
-    followers:{
-       type:Number
-    }, 
-    following:{
-         type:Number
-    }
+    followers:[{
+      type: Schema.Types.ObjectId,
+      ref:'User'
+    }], 
+    following:[{
+      type: Schema.Types.ObjectId,
+      ref:'User'
+    }]
 })
 
 userSchema.methods.toJSON = function () {
