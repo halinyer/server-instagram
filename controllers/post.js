@@ -27,26 +27,22 @@ const User = require('../model/user')
     
     const createPost = async(req=request, res=response) => {
         const {img,description,like=0} = req.body
-        const userPost = req.uid 
         //Buscar usuario para actualizar SU post
-        const user = await User.findById(userPost)
+        const user = await User.findById(req.uid )
 
-
-        const newPost = new Post({
+        const modelPost = new Post({
             _id:new mongoose.mongo.ObjectId(),
             img,
             description,
             like
         })
 
-        newPost.user = userPost
-        user.post.push(newPost._id)
-
         try {
-            await Promise.all([newPost.save(), user.save()])
-            res.status(201).json({
-                msg:`Success post`
-            })
+           let data =  await Post.newPost(user,modelPost)
+           res.json({
+               msj:'Success post',
+               post: data
+           })
         } catch (error) {
             console.log(error)
             res.status(400).json({
@@ -54,6 +50,8 @@ const User = require('../model/user')
             })
         }
     }
+
+
     
     const updatePost = (req=request, res=response) => {
         const {id} = req.params
