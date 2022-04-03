@@ -7,6 +7,19 @@ const { ExistsName, NoExistsName } = require('../helpers/validation-db')
 const { validationFiels } = require('../middleware/validation-req')
 
 
+router.get("/",(req, res) => {
+     res.json({
+        signup:{
+             url:'http://localhost:8083/api/auth/signup',
+             msg:'method post'
+        },
+
+        sigin:{
+            url:'http://localhost:8083/api/auth/sigin',
+            msg:'method post'
+        }
+     })
+})
 
 router.post('/signup',[
     check("name",'Name is Empty').not().isEmpty(),
