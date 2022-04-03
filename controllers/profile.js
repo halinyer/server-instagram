@@ -15,6 +15,8 @@ const getProfilePublic = async(req, res) => {
         operDocumentLimit: 12
       })
 
+     
+    
       
       res.json({
        profile

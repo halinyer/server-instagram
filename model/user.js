@@ -3,7 +3,8 @@ const {Schema,model} = require('mongoose')
 const userSchema = new Schema({
     name:{
        type:String,
-       required:true
+       required:true,
+       lowercase:true
     },
     password:{
       type:String,
@@ -35,6 +36,10 @@ const userSchema = new Schema({
     }]
 })
 
+//Esto es solo de prueba
+userSchema.virtual('greet').get(function () {
+  return `Hola mi nombre es ${this.name}`
+})
 
 userSchema.methods.toJSON = function () {
    let {password, private,follower,following, ...rest} = this.toObject()
