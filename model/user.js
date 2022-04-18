@@ -28,13 +28,15 @@ const userSchema = new Schema({
     },
     follower:[{
       type: Schema.Types.ObjectId,
-      ref:'Follow'
+      ref:'User'
     }],
     following:[{
       type: Schema.Types.ObjectId,
-      ref:'Follow'
+      ref:'User'
     }]
 })
+
+
 
 //Esto es solo de prueba
 userSchema.virtual('greet').get(function () {
@@ -45,7 +47,9 @@ userSchema.methods.toJSON = function () {
    let {password, private,follower,following, ...rest} = this.toObject()
 
    return {
-      ...rest
+      ...rest,
+      following: following.length,
+      follower: follower.length
    }
 }
 
